@@ -1,4 +1,6 @@
-import { ApolloServer, gql } from 'apollo-server';
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import { gql } from 'apollo-server-core';
 import { products } from './products';
 
 const typeDefs = gql`
@@ -29,14 +31,22 @@ const resolvers = {
   },
 };
 
-const port = process.env.PORT;
+const start = async () => {
+  const app = express();
 
-if (!port) {
-  throw new Error('PORT environment variable is required in Elastic Beanstalk');
-}
+  // ✅ Health check route for EB
+  app.get('/', (_, res) => res.send('OK'));
 
-const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({ typeDefs, resolvers });
+  await server.start();
+  server.applyMiddleware({ app });
 
-server.listen({ port }).then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
-});
+  const port = process.env.PORT;
+  if (!port) throw new Error("PORT must be set");
+
+  app.listen({ port }, () => {
+    console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
+  });
+};
+
+start();
