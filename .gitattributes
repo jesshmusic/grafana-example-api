@@ -1,0 +1,14 @@
+# Highlight TypeScript as primary language
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
+
+# Mark GraphQL files if present
+*.graphql linguist-language=GraphQL
+*.gql linguist-language=GraphQL
+
+# Mark yarn lock for dependency clarity
+yarn.lock linguist-generated
+
+# Ignore build output
+dist/* linguist-generated
+build/* linguist-generated
