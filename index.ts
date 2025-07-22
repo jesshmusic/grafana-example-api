@@ -44,7 +44,7 @@ const start = async () => {
   const port = process.env.PORT;
   if (!port) throw new Error("PORT must be set");
 
-  app.listen({ port }, () => {
+  app.listen({ port, host: '0.0.0.0' }, () => {
     console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
   });
 };
