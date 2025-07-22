@@ -2,6 +2,7 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { gql } from 'apollo-server-core';
 import { products } from './products';
+import cors from 'cors';
 
 const typeDefs = gql`
     type Product {
@@ -31,22 +32,38 @@ const resolvers = {
   },
 };
 
-const start = async () => {
+const startServer = async () => {
   const app = express();
 
-  // ✅ Health check route for EB
+  app.use(cors({
+    origin: [
+      'http://localhost:3000',
+      'https://grafana-example-api.existentialmusic.com',
+      'https://grafana-example-frontend.s3.amazonaws.com',
+    ],
+    credentials: true,
+  }));
+
   app.get('/', (_, res) => res.send('OK'));
 
   const server = new ApolloServer({ typeDefs, resolvers });
   await server.start();
   server.applyMiddleware({ app });
 
-  const port = process.env.PORT;
-  if (!port) throw new Error("PORT must be set");
+  const port: number = parseInt(process.env.PORT || '8081', 10);
 
-  app.listen({ port, host: '0.0.0.0' }, () => {
+  app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect('https://' + req.headers.host + req.url);
+    }
+    next();
+  });
+
+  app.listen(port, '0.0.0.0', () => {
     console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
   });
+
+
 };
 
-start();
+startServer();
