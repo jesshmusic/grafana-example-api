@@ -29,9 +29,14 @@ const resolvers = {
   },
 };
 
-const port = process.env.PORT || 8081;
+const port = process.env.PORT;
+
+if (!port) {
+  throw new Error('PORT environment variable is required in Elastic Beanstalk');
+}
+
 const server = new ApolloServer({ typeDefs, resolvers });
 
-server.listen({ port }).then(({ url }: { url: string }) => {
-  console.log(`🚀  Server ready at ${url}`);
+server.listen({ port }).then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
 });
