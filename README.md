@@ -1,7 +1,12 @@
 # Product API – GraphQL Example
 
+![GraphQL](https://img.shields.io/badge/API-GraphQL-blueviolet)
+![TypeScript](https://img.shields.io/badge/Language-TypeScript-3178c6?logo=typescript)
+![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js)
+
 This is a sample API project built with [Apollo Server](https://www.apollographql.com/docs/apollo-server/) and [GraphQL](https://graphql.org/).
 It provides a simple `products` API for querying and exploring a product catalog using GraphQL.
+
 
 ## Features
 
