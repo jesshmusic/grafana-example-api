@@ -1,83 +1,100 @@
-# Example GraphQL Products API
+# Product API – GraphQL Example
 
-This is a simple Node.js GraphQL API for a mock product database. It uses Apollo Server and TypeScript, and is designed as an example for frontend testing or prototyping.
+This is a sample API project built with [Apollo Server](https://www.apollographql.com/docs/apollo-server/) and [GraphQL](https://graphql.org/).
+It provides a simple `products` API for querying and exploring a product catalog using GraphQL.
 
 ## Features
 
-- GraphQL API for fetching a list of products or a single product by ID
-- TypeScript for type safety
-- Easily extensible mock data in `products.ts`
-
-## Endpoints
-
-- `query products`: Returns all products
-- `query product(id: Int!)`: Returns a single product by ID
-
-## Project Structure
-
-- `index.ts`: Main API server (Apollo + TypeScript)
-- `products.ts`: Mock data and type definitions
-- `package.json`: Project dependencies and scripts
-- `tsconfig.json`: TypeScript configuration
+* **GraphQL API** for products (query all, query by ID)
+* Built with Apollo Server
+* Sample product data in memory
+* Ready to use with Apollo Studio, GraphQL Playground, or similar tools
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v16+ recommended)
-- [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
+* [Node.js](https://nodejs.org/) (v16 or later recommended)
+* [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
 ### Installation
 
-```bash
-# Clone or unzip this repo
-cd <project-directory>
+1. **Clone the repository**
 
-# Install dependencies
-yarn
-# or
-npm install
-```
+   ```bash
+   git clone https://github.com/yourusername/product-api-graphql-example.git
+   cd product-api-graphql-example
+   ```
 
-### Running the API
+2. **Install dependencies**
 
-```bash
-# Start the API (will run on http://localhost:8081 by default)
-yarn start
-# or
-npm run start
-```
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-### Development
+3. **Start the server**
 
-For TypeScript live reloading, you may use `ts-node-dev` (install globally if desired):
+   ```bash
+   npm start
+   # or
+   yarn start
+   ```
 
-```bash
-yarn global add ts-node-dev
-yarn dev
-# or
-npx ts-node-dev index.ts
-```
+The server will start on [http://localhost:8081/](http://localhost:8081/)
 
 ### Usage
 
-Open [http://localhost:8081](http://localhost:8081) in your browser to access Apollo Server's GraphQL Playground.
+Once running, you can open the Apollo Studio sandbox or any GraphQL Playground at [http://localhost:8081/](http://localhost:8081/) to interact with the API.
 
-#### Example Query
+#### Example GraphQL Query
 
 ```graphql
 query {
   products {
     id
     title
-    description
     price
-    stock
+    category
   }
 }
 ```
 
+#### Example Response
+
+```json
+{
+  "data": {
+    "products": [
+      {
+        "id": 1,
+        "title": "Test Product",
+        "price": 99.99,
+        "category": "TestCategory"
+      }
+    ]
+  }
+}
+```
+
+## Scripts
+
+* `npm start` – Start the server
+* `npm run dev` – Start with nodemon for development (if configured)
+
+## Project Structure
+
+* `index.js` or `server.js` – Main entry point
+* `products.js` – Product data
+* `schema.js` – GraphQL schema (if separated)
+
+## License
+
+MIT
+
 ---
 
-**Note:** This project is for demonstration and development use only. No authentication or database is included.
+### Repo Topics/Tags
 
+Make sure to add `graphql`, `apollo-server`, and `api` to your GitHub repository topics for discoverability.
