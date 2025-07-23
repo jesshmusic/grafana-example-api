@@ -99,6 +99,66 @@ query {
 * `products.js` – Product data
 * `schema.js` – GraphQL schema (if separated)
 
+## 🧪 Testing
+
+This project uses **Jest** and **ts-jest** for unit and integration testing, with test coverage enforced at the project level.
+
+### Running Tests
+
+Install all dependencies (including dev dependencies):
+
+```bash
+yarn install
+# or
+npm install
+```
+
+Run the test suite:
+
+```bash
+yarn test
+# or
+npm test
+```
+
+### Test Coverage
+
+To check test coverage and see a detailed report:
+
+```bash
+yarn test:coverage
+# or
+npm run test:coverage
+```
+
+The coverage report will be displayed in your terminal and saved to the `coverage/` directory (including HTML format).
+
+> **Note:**  
+> This project maintains high coverage for statements, functions, and lines (80%+), with a slightly lower threshold for branches (55%+) due to some non-critical server and configuration code that is difficult to test.
+
+### Coverage Thresholds
+
+Enforced in `jest.config.js`:
+- **Statements:** 80%
+- **Lines:** 80%
+- **Functions:** 75%
+- **Branches:** 55%
+
+You can adjust these thresholds to be stricter or more lenient as your project requirements evolve.
+
+### Test Locations
+
+All test files are located in `src/__tests__/` and follow the pattern `*.test.ts`.
+
+### How to Interpret Results
+
+- **PASS** means all tests in a suite ran successfully.
+- **FAIL** indicates one or more tests need attention.
+- Coverage metrics (`statements`, `branches`, etc.) help track the health of your codebase.
+- For coverage details, see the output in your terminal or open `coverage/lcov-report/index.html` in your browser.
+
+---
+
 ## License
 
 MIT
