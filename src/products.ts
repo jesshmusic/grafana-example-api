@@ -1,3 +1,8 @@
+export interface PricePoint {
+  date: string;
+  price: number;
+}
+
 export interface Product {
   id: number;
   title: string;
@@ -10,6 +15,7 @@ export interface Product {
   category: string;
   thumbnail: string;
   images: string[];
+  historicalPrices?: PricePoint[];
 }
 
 export const products: Product[] = [
