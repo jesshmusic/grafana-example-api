@@ -5,24 +5,24 @@ import { products } from './products';
 import cors from 'cors';
 
 const typeDefs = gql`
-    type Product {
-        id: Int!
-        title: String!
-        description: String!
-        price: Float!
-        discountPercentage: Float!
-        rating: Float!
-        stock: Int!
-        brand: String!
-        category: String!
-        thumbnail: String!
-        images: [String!]!
-    }
+  type Product {
+    id: Int!
+    title: String!
+    description: String!
+    price: Float!
+    discountPercentage: Float!
+    rating: Float!
+    stock: Int!
+    brand: String!
+    category: String!
+    thumbnail: String!
+    images: [String!]!
+  }
 
-    type Query {
-        products: [Product!]!
-        product(id: Int!): Product
-    }
+  type Query {
+    products: [Product!]!
+    product(id: Int!): Product
+  }
 `;
 
 const resolvers = {
@@ -39,7 +39,7 @@ const startServer = async () => {
     origin: [
       'http://localhost:3000',
       'https://grafana-example-api.existentialmusic.com',
-      'https://grafana-example-frontend.s3.amazonaws.com',
+      'https://grafana-example-frontend.s3.us-east-1.amazonaws.com',
     ],
     credentials: true,
   }));
