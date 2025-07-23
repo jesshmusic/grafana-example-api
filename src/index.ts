@@ -66,7 +66,7 @@ const resolvers = {
   },
 };
 
-const startServer = async () => {
+const startServer = async (testMode = false) => {
   const app = express();
 
   app.use(cors({
@@ -93,10 +93,17 @@ const startServer = async () => {
     }
     next();
   });
-  app.listen(port, '0.0.0.0', () => {
-    console.log(server);
-    console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
-  });
+  if (!testMode) {
+    app.listen(port, '0.0.0.0', () => {
+      console.log(`🚀 Server ready at http://localhost:8081/graphql`);
+    });
+  }
+  return app;
 };
 
-startServer();
+export { generatePriceHistory, resolvers, startServer };
+
+if (require.main === module) {
+  startServer();
+}
+

@@ -12,8 +12,13 @@ It provides a simple `products` API for querying and exploring a product catalog
 
 * **GraphQL API** for products (query all, query by ID)
 * Built with Apollo Server
-* Sample product data in memory
+* Sample product data in memory, including:
+   * 30-day `historicalPrices` field on each product for realistic time series testing
 * Ready to use with Apollo Studio, GraphQL Playground, or similar tools
+
+## Data Structure
+
+Each product includes standard metadata (id, title, brand, price, etc.) and a `historicalPrices` field containing 30 daily `{ date, price }` points with randomized variations.
 
 ## Getting Started
 
@@ -97,9 +102,3 @@ query {
 ## License
 
 MIT
-
----
-
-### Repo Topics/Tags
-
-Make sure to add `graphql`, `apollo-server`, and `api` to your GitHub repository topics for discoverability.
