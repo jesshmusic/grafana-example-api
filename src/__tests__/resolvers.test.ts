@@ -3,7 +3,7 @@ import { resolvers } from '../index';
 
 describe('resolvers.Query.products', () => {
   it('returns all products with historicalPrices', () => {
-    const result = resolvers.Query.products();
+    const result = resolvers.Query.products({}, { limit: 30 });
     expect(result).toHaveLength(products.length);
     result.forEach((prod, i) => {
       expect(prod.id).toBe(products[i].id);
